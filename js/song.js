@@ -1,5 +1,18 @@
+/**
+ * @class Song
+ */
 export class Song
 {
+    /**
+     * Creates an instance of Song.
+     * @param {*} id
+     * @param {string} title
+     * @param {string} artist
+     * @param {string} [album='']
+     * @param {string} [year='']
+     * @param {string} [cover='']
+     * @memberof Song
+     */
     constructor(id, title, artist, album = '', year = '', cover = '')
     {
         this.id = id;
@@ -10,26 +23,51 @@ export class Song
         this.cover = cover;
     }
 
+    /**
+     * Retrieves all favorite songs from `localStorage`.
+     * 
+     * @static
+     * @returns {array}
+     * @memberof Song
+     */
     static allFavorites()
     {
+        // Get 'songs' from localStorage
         let songs = localStorage.getItem('songs');
+
+        // If songs is null, set it to an empty array, else parse JSON
         if (songs === null) {
             songs = [];
         } else {
             songs = JSON.parse(songs);
         }
 
-        return songs;
+        // Map (convert) each plain object to `Song` instance
+        return songs.map((song) => {
+            return new Song(song.id, song.title, song.artist, song.album, song.year, song.cover);
+        });
     }
 
+    /**
+     * Retrieves single favorite song from `localStorage`
+     *
+     * @static
+     * @param {*} id
+     * @returns {Song}
+     * @memberof Song
+     */
     static getFavorite(id)
     {
-        // Get single favorite from localStorage by ID
+        // Get all favorite songs
         let songs = Song.allFavorites();
-        let result = songs.find((song) => {
+
+        // Find song matching specified `id`
+        let song = songs.find((song) => {
             return song.id == id;
         });
-        return result;
+
+        // Convert plain object to `Song` instance
+        return new Song(song.id, song.title, song.artist, song.album, song.year, song.cover);
     }
 
     static async search(keyword)
@@ -39,45 +77,35 @@ export class Song
 		const key = (Math.random() + Date.now()).toString(36).substring(2);
 
 		// Create search URL string
-		const url = `https://itunes.apple.com/search?media=music&entity=song&term=${keyword}&${key}`;
+		const url = `https://itunes.apple.com/search?media=music&entity=song&term=${keyword}&limit=10&country=PH&${key}`;
 
-		// Intialize results array
+		// Intialize `results` array
 		let results = [];
 
-		// Create HTTP request using `fetch`
-		const request = await fetch(url, {
-			method: 'GET',
-			headers: {
-				'Access-Control-Allow-Origin': '*',
-				'Accept': 'application/json',
-				'Authorization': 'Bearer ' + key,
-				'Content-Type': 'application/json'
-			},
-		})
+		// Create AJAX request using `fetch`
+        await fetch(url).then(response => {
+            // Read response as json
+            return response.json()
+        })
 
-		// Read the response as JSON and convert it to Object
-		.then(response => {
-			return response.json()
-		})
+        // Loop through each response object
+        .then(response => {
+            response.results.forEach((result) => {
+                // Check if result item has `kind` property of 'song'
+                if (result.kind === 'song') {
 
-		// Do stuff with the data
-		.then(response => {
-			response.results.forEach((result) => {
-				// Check if result item has `kind` property of 'song'
-				if (result.kind === 'song') {
-
-					// Convert each item to a new `Song` object
-					results.push(new Song(
-						result.trackId, // id
-						result.trackName, // title
-						result.artistName, // artist						
+                    // Convert each item to a new `Song` instance then append it to `results`
+                    results.push(new Song(
+                        result.trackId, // id
+                        result.trackName, // title
+                        result.artistName, // artist						
                         result.collectionName, // album,
                         (new Date(result.releaseDate)).getFullYear(), // year
-						result.artworkUrl100 // cover
-					));
-				}
-			});
-		});
+                        result.artworkUrl100 // cover
+                    ));
+                }
+            });
+        });
 
 		return results;			
     }

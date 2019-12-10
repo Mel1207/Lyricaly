@@ -1,0 +1,68 @@
+html,
+body {
+  font-family: Roboto, sans-serif;
+}
+
+.song-item {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  border: solid 1px rgb(224, 224, 224);
+  border-radius: 3px;
+  margin: 5px 0px;
+}
+
+.song-item > .song-image {
+  width: 60px;
+  height: 60px;
+}
+
+.song-item.empty {
+  border: none;
+  text-align: center;
+  color: #9e9e9e;
+  padding: 40px 10px;
+}
+
+.song-item.empty .content {
+  margin: 0 auto;
+}
+
+.song-item > .song-image img {
+  width: 60px;
+}
+
+.song-item > .song-info {
+  flex-grow: 1;
+  padding: 5px 5px 5px 15px;
+}
+
+.song-actions {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-actions {
+  font-size: 16px;
+}
+
+.song-info .title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.song-info .details {
+  font-size: 12px;
+}
+
+.song-info .details > span::before {
+  content: "\2022";
+  padding: 2px;
+}
+
+.song-info .details > span:first-child::before {
+  content: "";
+  padding: 0;
+}
