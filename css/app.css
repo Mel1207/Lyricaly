@@ -1,6 +1,19 @@
+@import url('poppins.min.css');
+@import url('roboto.min.css');
+
 html,
 body {
   font-family: Roboto, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 .song-item {
@@ -79,4 +92,9 @@ body {
 
 .btn .fas, .btn-floating .fas {
   font-size: 16px;
+}
+
+.brand-logo {
+  font-weight: 600;
+  font-family: Poppins;
 }
