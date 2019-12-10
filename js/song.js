@@ -1,6 +1,6 @@
 export class Song
 {
-    constructor(id, title, artist, album, year, cover)
+    constructor(id, title, artist, album = '', year = '', cover = '')
     {
         this.id = id;
         this.title = title;
@@ -25,10 +25,10 @@ export class Song
     static getFavorite(id)
     {
         // Get single favorite from localStorage by ID
+        let songs = Song.allFavorites();
         let result = songs.find((song) => {
-            return song.id === id;
+            return song.id == id;
         });
-
         return result;
     }
 
@@ -37,9 +37,10 @@ export class Song
         // Search songs from iTunes API
     }
 
-    get inFavorites()
+    inFavorites()
     {
         // Check if song is in favorites
+        return Song.getFavorite(this.id) !== undefined;
     }
 
     addToFavorites()
@@ -48,16 +49,22 @@ export class Song
         let songs = Song.allFavorites();
         songs.push(this);
         localStorage.setItem('songs', JSON.stringify(songs));
-
     }
+
 
     removeFromFavorites()
     {
         // Remove song from favorites in localStorage
+        let songs = Song.allFavorites();
+        songs = songs.filter((song) => {
+            return song.id != this.id;
+        });
+        localStorage.setItem('songs', JSON.stringify(songs));
     }
 
     clearFavorites()
     {
         // Empty favorites in localStorage
+        localStorage.setItem('songs', JSON.stringify([]));
     }
 }
