@@ -66,8 +66,19 @@ export class Song
             return song.id == id;
         });
 
+        // Check if song is undefined (not found)
+        if (song == undefined) {
+            return undefined;
+        }
+
         // Convert plain object to `Song` instance
         return new Song(song.id, song.title, song.artist, song.album, song.year, song.cover);
+    }
+
+    static clearFavorites()
+    {
+        // Empty favorites in localStorage
+        localStorage.setItem('songs', JSON.stringify([]));
     }
 
     static async search(keyword)
@@ -133,11 +144,5 @@ export class Song
             return song.id != this.id;
         });
         localStorage.setItem('songs', JSON.stringify(songs));
-    }
-
-    clearFavorites()
-    {
-        // Empty favorites in localStorage
-        localStorage.setItem('songs', JSON.stringify([]));
     }
 }

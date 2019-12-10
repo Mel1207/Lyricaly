@@ -2,14 +2,16 @@ export class UI
 {
     constructor()
     {
-        this.searchResults = document.querySelector('#search-results');
-        this.searchForm = document.querySelector('#search-form');
         this.searchInput = document.querySelector('#search');
+        this.searchForm = document.querySelector('#search-form');
+        this.resultsList = document.querySelector('#results-list');
+        this.favoritesList = document.querySelector('#favorites-list');
+        this.clearFavorites = document.querySelector('#favorites-clear');
     }
 
     createResultItem(song)
     {  
-        this.searchResults.innerHTML += `
+        this.resultsList.innerHTML += `
             <li class="song-item" id="result-${song.id}">
                 <div class="song-image">
                     <img src="${song.cover}" alt="${song.album} Artwork">
@@ -22,28 +24,48 @@ export class UI
                     </div>
                 </div>
                 <div class="song-actions">
-                    <a href="javascript:void(0)" class="secondary-content song-favorite" data-id="${song.id}">
+                    <a href="javascript:void(0)" class="secondary-content song-favorite" song-id="${song.id}">
                         <i class="fas fa-star amber-text"></i>
                     </a>
                 </div>
             </li>
         `;
-
     }
 
     createFavoriteItem(song)
     {
-
+        this.favoritesList.innerHTML += `
+            <li class="song-item" id="favorite-${song.id}">
+                <div class="song-image">
+                    <img src="${song.cover}" alt="${song.album} Artwork">
+                </div>
+                <div class="song-info">
+                    <div class="title">${song.title}</div>
+                    <div class="details">
+                        <span>${song.artist}</span>
+                        <span>${song.album} (${song.year})</span>
+                    </div>
+                </div>
+                <div class="song-actions">
+                    <a href="javascript:void(0)" class="secondary-content favorite-remove" song-id="${song.id}">
+                        <i class="fas fa-times grey-text"></i>
+                    </a>
+                </div>
+            </li>
+        `;
     }
 
-    removeFavoriteItem()
+    removeFavoriteItem(id)
     {
-
+        const favoriteItem = this.favoritesList.querySelector(`.song-item#favorite-${id}`);
+        if (favoriteItem) {
+            favoriteItem.remove();
+        }
     }
 
-    clearResultsList(message='')
+    clearResultsList(message=null)
     {   
-        this.searchResults.innerHTML = message ? `
+        this.resultsList.innerHTML = message ? `
             <li class="song-item empty">
                 <div class="content">
                     ${message}
@@ -52,19 +74,26 @@ export class UI
         ` : '';
     }
 
-    clearFavoritesList()
+    clearFavoritesList(message=null)
     {
-
+        this.favoritesList.innerHTML = message ? `
+            <li class="song-item empty">
+                <div class="content">
+                    ${message}
+                </div>
+            </li>
+        ` : '';
     }
 
     showNotification(message, classes='')
     {
-        M.toast({html: message, classes: classes});
+        M.Toast.dismissAll();
+        M.toast({html: message, classes: classes, displayLength: 1500});
     }
 
     showLoading()
     {
-        this.searchResults.innerHTML = `
+        this.resultsList.innerHTML = `
             <li class="song-item empty">
                 <div class="content">
                     <div class="preloader-wrapper active">
@@ -83,10 +112,5 @@ export class UI
                 </div>
             </li>
         `;
-    }
-
-    hideLoading()
-    {
-
     }
 }

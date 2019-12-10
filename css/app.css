@@ -5,7 +5,7 @@ body {
 
 .song-item {
   display: flex;
-  padding: 0;
+  padding: 5px;
   align-items: center;
   border: solid 1px rgb(224, 224, 224);
   border-radius: 3px;
@@ -13,6 +13,7 @@ body {
 }
 
 .song-item > .song-image {
+  min-width: 60px;
   width: 60px;
   height: 60px;
 }
@@ -35,10 +36,11 @@ body {
 .song-item > .song-info {
   flex-grow: 1;
   padding: 5px 5px 5px 15px;
+  overflow: hidden;
 }
 
 .song-actions {
-  padding: 10px;
+  padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,10 +53,18 @@ body {
 .song-info .title {
   font-weight: 500;
   font-size: 16px;
+  max-height: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .song-info .details {
   font-size: 12px;
+  max-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden
 }
 
 .song-info .details > span::before {
@@ -65,4 +75,8 @@ body {
 .song-info .details > span:first-child::before {
   content: "";
   padding: 0;
+}
+
+.btn .fas, .btn-floating .fas {
+  font-size: 16px;
 }

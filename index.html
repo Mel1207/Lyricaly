@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/d787e0ace0.js" crossorigin="anonymous"></script>
+    <title>Lyricaly</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/roboto.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <title>Lyricaly</title>
 </head>
 
 <body class="grey lighten-3">
@@ -26,10 +26,10 @@
                                     <input type="search" id="search" required>
                                 </div>
                             </form>
-                            <ul class="song-list" id="search-results">
+                            <ul class="song-list" id="results-list">
                                 <li class="song-item empty">
                                     <div class="content">
-                                        Such Empty, Try Searching For Something<br>
+                                        Such Empty. Try Searching For Something.<br>
                                     </div>
                                 </li>
                             </ul>
@@ -38,17 +38,19 @@
                 </div>
                 <div class="col s12 l5">
                     <div class="card">
-                        <div class="card-content">
+                        <div class="card-image grey darken-4">
+                            <img src="img/vinyl.jpg" style="opacity: 0.5;">
                             <span class="card-title">My Favorites</span>
-                            <ul class="collection" id="favoriteList">
-                                <li class="collection-item avatar">
-                                    <img src="http://lorempixel.com/200/200" class="circle">
-                                    <span class="title" style="font-weight: bold;">Song Title1</span><br>
-                                    <small>Artist</small> -
-                                    <small>Album (Year) </small>
-                                    <a href="javascript:void(0)" class="secondary-content">
-                                        <i class="fas fa-star amber-text"></i>
-                                    </a>
+                            <a href="javascript:void(0)" id="favorites-clear" class="btn-floating halfway-fab waves-effect waves-light deep-orange darken-3d">
+                                <i class="fas fa-trash fa-fw fa-xs"></i>
+                            </a>
+                        </div>
+                        <div class="card-content">                            
+                            <ul class="song-list" id="favorites-list">
+                                <li class="song-item empty">
+                                    <div class="content">
+                                        You have no favorites<br>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
