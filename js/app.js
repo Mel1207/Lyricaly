@@ -229,6 +229,6 @@ app.bindEventListeners();
 
 // This is for debugging, so we can access the classes in console
 // Comment this out when deploying
-window.app = app;
-wjndow.ui = ui;
-window.Song = Song;
+// window.app = app;
+// window.ui = ui;
+// window.Song = Song;
