@@ -23,7 +23,7 @@
                         GitHub
                     </a>
                 </li>
-                <li><a href="#">About</a></li>
+                <li><a href="#aboutUs">About</a></li>
             </ul>
         </div>
     </nav>
@@ -73,9 +73,89 @@
             </div>
         </div>
     </main>
+
+    <!--About us Section-->
+    <section class="scrollspy white" id="aboutUs">
+        <div class="container">
+            <h5 class="grey-text text-darken-2 center" style="padding: 20px;">About</h5>
+            <p class="grey-text text-darken-2 center" style="font-size: 15px; font-weight: small;">This is project is developed by Team Gerard. This web application is developed for educational purposes as well as additional to portfolio to each individual contributors of the group </p>
+            <h5 class="grey-text text-darken-2 center" style="padding: 20px;">The Developers</h5>
+            <div class="row">
+                <div class="col s6 m3">
+                    <div class="card small">
+                        <div class="card-image">
+                            <img src="img/gerard.jpg" class="responsive-img">
+                        </div>
+                        <div class="card-content center">
+                            <span style="font-size: 17px;">Gerard Balaoro</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6 m3">
+                    <div class="card small">
+                        <div class="card-image">
+                            <img src="img/rich.jpg" class="responsive-img" style="height: 200px;">
+                        </div>
+                        <div class="card-content center">
+                            <span style="font-size: 17px;">Richard Gutierrez</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6 m3">
+                    <div class="card small">
+                        <div class="card-image">
+                            <img src="img/kat.jpg" class="responsive-img">
+                        </div>
+                        <div class="card-content center">
+                            <span style="font-size: 17px;">Katherine Baldoz</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6 m3">
+                    <div class="card small">
+                        <div class="card-image">
+                            <img src="img/mel.jpg" class="responsive-img">
+                        </div>
+                        <div class="card-content center">
+                            <span style="font-size: 17px;">Mel John Pualon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Footer Section-->
+    <footer class="page-footer grey darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <h5 class="center grey-text">About Lyricaly</h5>
+                    <p class="grey-text text-lighten-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, ex sequi iure vero aspernatur aperiam officia minima debitis voluptatum quas?</p>
+                </div>
+                <div class="col s12 m6">
+                    <h5 class="center grey-text">Follow us</h5>
+                    <ul class="grey-text text-lighten-1 center">
+                        <li><a href="https://github.com/Mel1207/Lyricaly/tree/master"><i class="fab fa-github medium amber-text"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-copyright grey darken-4">
+            <div class="container grey-text">Copyright &copy;2019
+                <a href="#" class="grey-text right">Terms and Condition</a>
+            </div> 
+        </div>
+    </footer>
     <script src="js/jquery.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script type="module" src="js/app.js"></script>
-</body>
+    <script>
+        $(document).ready(function () {
+            //This is scrollspy effect
+            $('.scrollspy').scrollSpy();
+        });
+    </script>
 
+</body>
 </html>
