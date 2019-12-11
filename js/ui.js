@@ -103,17 +103,17 @@ export class UI
     */
     clearResultsList(message=null)
     {   
-        // Check if message is null
+    	let content = '';
+    
+        // If message is not null, replace content with message
         if (message) {
-            let content = `
+            content = `
                 <li class="song-item empty">
                     <div class="content">
                         ${message}
                     </div>
                 </li>
             `;
-        } else {
-            let content = '';
         }
         
         this.resultsList.innerHTML = content;
@@ -127,17 +127,18 @@ export class UI
     */
     clearFavoritesList(message=null)
     {
-        // Check if message is null
+        
+        let content = '';
+    
+        // If message is not null, replace content with message
         if (message) {
-            let content = `
+            content = `
                 <li class="song-item empty">
                     <div class="content">
                         ${message}
                     </div>
                 </li>
             `;
-        } else {
-            let content = '';
         }
         
         this.favoritesList.innerHTML = content;
