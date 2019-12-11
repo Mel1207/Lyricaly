@@ -1,5 +1,16 @@
+/**
+ * View object.
+ * Handles DOM Manipulation.
+ *
+ * @class UI
+*/
 export class UI
 {
+    /**
+     * Creates a new instance of UI
+     *
+     * @memberof UI
+    */
     constructor()
     {
         this.searchInput = document.querySelector('#search');
@@ -8,7 +19,13 @@ export class UI
         this.favoritesList = document.querySelector('#favorites-list');
         this.clearFavorites = document.querySelector('#favorites-clear');
     }
-
+    
+    /**
+     * Appends new item in results list
+     *
+     * @param {Song} song
+     * @memberof UI
+    */
     createResultItem(song)
     {  
         this.resultsList.innerHTML += `
@@ -32,6 +49,12 @@ export class UI
         `;
     }
 
+    /**
+     * Appends new item in favorites list
+     *
+     * @param {Song} Song
+     * @memberof UI
+    */
     createFavoriteItem(song)
     {
         this.favoritesList.innerHTML += `
@@ -55,42 +78,92 @@ export class UI
         `;
     }
 
+    /**
+     * Removes item from favorites list using specifies `id`
+     *
+     * @param {*} id
+     * @memberof UI
+    */
     removeFavoriteItem(id)
     {
+        // Find element with class `song-item` and id of `favorite-${id}`
         const favoriteItem = this.favoritesList.querySelector(`.song-item#favorite-${id}`);
+        
+        // Remove element if found
         if (favoriteItem) {
             favoriteItem.remove();
         }
     }
 
+    /**
+     * Removes all items from results list, append given message
+     *
+     * @param {string} message
+     * @memberof UI
+    */
     clearResultsList(message=null)
     {   
-        this.resultsList.innerHTML = message ? `
-            <li class="song-item empty">
-                <div class="content">
-                    ${message}
-                </div>
-            </li>
-        ` : '';
+        // Check if message is null
+        if (message) {
+            let content = `
+                <li class="song-item empty">
+                    <div class="content">
+                        ${message}
+                    </div>
+                </li>
+            `;
+        } else {
+            let content = '';
+        }
+        
+        this.resultsList.innerHTML = content;
     }
 
+    /**
+     * Removes all items from favorites list, append given message
+     *
+     * @param {string} message
+     * @memberof UI
+    */
     clearFavoritesList(message=null)
     {
-        this.favoritesList.innerHTML = message ? `
-            <li class="song-item empty">
-                <div class="content">
-                    ${message}
-                </div>
-            </li>
-        ` : '';
+        // Check if message is null
+        if (message) {
+            let content = `
+                <li class="song-item empty">
+                    <div class="content">
+                        ${message}
+                    </div>
+                </li>
+            `;
+        } else {
+            let content = '';
+        }
+        
+        this.favoritesList.innerHTML = content;
     }
-
+    
+    /**
+     * Shows material toast notification
+     *
+     * @param {string} message
+     * @param {string} classes
+     * @memberof UI
+    */
     showNotification(message, classes='')
     {
+        // Remove all existing toast notifications
         M.Toast.dismissAll();
+        
+        // Show toast message
         M.toast({html: message, classes: classes, displayLength: 1500});
     }
 
+    /**
+     * Clears results list and appends loading animation
+     *
+     * @memberof UI
+    */
     showLoading()
     {
         this.resultsList.innerHTML = `
