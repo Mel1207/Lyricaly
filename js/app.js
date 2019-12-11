@@ -215,8 +215,12 @@ class App
 }
 
 // Initialize MaterializeCSS components
-// This is required according to the documentation
 M.AutoInit();
+
+// Initialize scrollspy
+$(document).ready(function () {
+    $('.scrollspy').scrollSpy();
+});
 
 // Initialize new UI instance
 const ui = new UI();
@@ -227,8 +231,12 @@ const app = new App(ui);
 // Bind all event listeners to the DOM
 app.bindEventListeners();
 
-// This is for debugging, so we can access the classes in console
-// Comment this out when deploying
-// window.app = app;
-// window.ui = ui;
-// window.Song = Song;
+/** 
+ * This following is for debugging, so we can access the classes in console
+*/
+
+/*
+window.app = app;
+window.ui = ui;
+window.Song = Song;
+*/

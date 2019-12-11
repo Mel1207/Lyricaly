@@ -28,7 +28,7 @@ export class UI
     */
     createResultItem(song)
     {  
-        this.resultsList.innerHTML += `
+        this.resultsList.innerHTML += /* html */`
             <li class="song-item" id="result-${song.id}">
                 <div class="song-image">
                     <img src="${song.cover}" alt="${song.album} Artwork">
@@ -57,7 +57,7 @@ export class UI
     */
     createFavoriteItem(song)
     {
-        this.favoritesList.innerHTML += `
+        this.favoritesList.innerHTML += /* html */`
             <li class="song-item" id="favorite-${song.id}">
                 <div class="song-image">
                     <img src="${song.cover}" alt="${song.album} Artwork">
@@ -107,7 +107,7 @@ export class UI
     
         // If message is not null, replace content with message
         if (message) {
-            content = `
+            content = /* html */`
                 <li class="song-item empty">
                     <div class="content">
                         ${message}
@@ -132,7 +132,7 @@ export class UI
     
         // If message is not null, replace content with message
         if (message) {
-            content = `
+            content = /* html */`
                 <li class="song-item empty">
                     <div class="content">
                         ${message}
@@ -167,7 +167,7 @@ export class UI
     */
     showLoading()
     {
-        this.resultsList.innerHTML = `
+        this.resultsList.innerHTML = /* html */`
             <li class="song-item empty">
                 <div class="content">
                     <div class="preloader-wrapper active">
