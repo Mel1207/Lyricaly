@@ -1,4 +1,8 @@
 /**
+ * Song data model.
+ * Handles searching through the iTunes API
+ * and reading/writing to `localStorage`.
+ *
  * @class Song
  */
 export class Song
